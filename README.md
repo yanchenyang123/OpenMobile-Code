@@ -263,10 +263,10 @@ but set `--agent_name qwen35vl`.
 | Model | Setting | pass@1 | pass@3 |
 |-------|---------|--------|--------|
 | Qwen3.5-9B | Official | 57.8 | — |
-| Qwen3.5-9B | Base (reproduced) | 50.9 ± 2.2 | 65.5 |
+| Qwen3.5-9B | Base | 50.9 ± 2.2 | 65.5 |
 | Qwen3.5-9B | SFT (OpenMobile) | 63.8 ± 2.8 | 78.5 |
 
-*Official*: reported reference numbers. *Base* / *SFT (OpenMobile)*: evaluated with this repository (`--agent_name qwen35vl` for Qwen3.5-9B; Qwen3-VL-8B uses `qwen3vl`). ± denotes std over runs where applicable.
+*Official*: reported reference numbers. *Base* / *SFT (OpenMobile)*: evaluated with this repository (`--agent_name qwen35vl` for Qwen3.5-9B.
 
 <a id="acknowledgements"></a>
 ## 💐 Acknowledgements
