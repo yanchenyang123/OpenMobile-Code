@@ -252,7 +252,7 @@ The YAML file is intended as a reproducible starting point for Qwen3-VL full-par
 ## Qwen3.5 Support
 We provide a minimal recipe to fine-tune and evaluate Qwen3.5-VL on AndroidWorld with OpenMobile data; use SGLang for serving (see notes on vLLM below).
 
-**AndroidWorld evaluation.** After environment setup and starting an OpenAI-compatible 
+**Evaluation.** After environment setup and starting an OpenAI-compatible 
 model server, run `AndroidWorld/run.py` as in the [Evaluation](#evaluation) section, 
 but set `--agent_name qwen35vl`.
 
