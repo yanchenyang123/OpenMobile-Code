@@ -16,6 +16,11 @@ Release Plans:
 - [x] Task and trajectory synthesis code
 - [ ] Other code and resources
 
+## Qwen3.5 Support
+OpenMobile includes evaluation and reproduction code for **Qwen3.5** on **AndroidWorld** via `--agent_name qwen35vl`. This section covers inference deployment, how to run eval, dataset compatibility, and reported results.
+
+
+
 ## 📋 Table of Contents
 - [Project Structure](#project-structure)
 - [Environment Setup](#environment-setup)
