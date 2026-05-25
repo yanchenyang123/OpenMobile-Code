@@ -256,13 +256,30 @@ We provide a minimal recipe to fine-tune and evaluate Qwen3.5-VL on AndroidWorld
 model server, run `AndroidWorld/run.py` as in the [Evaluation](#evaluation) section, 
 but set `--agent_name qwen35vl`.
 
-**Training.** Use the same [OpenMobile-Data](https://huggingface.co/datasets/cckevinn/OpenMobile-Data) splits (`openmobile_split1`–`4`) and register them in LLaMA-Factory as in [Training](#training). Before SFT on **Qwen3.5-9B**, reformat each conversation:
+**Training.** Use the same [OpenMobile-Data](https://huggingface.co/datasets/cckevinn/OpenMobile-Data) splits (`openmobile_split1`–`4`). The released JSON is in **Qwen3-VL** SFT format; for **Qwen3.5-9B** you must convert it first:
 
-1. **`system` message** — Public splits follow the **Qwen3-VL** template (JSON-in-`<tool_call>`, same style as `QWEN3VL_SYSTEM_PROMPT` in [`PROMPT.py`](AndroidWorld/android_world/agents/PROMPT.py)). Replace it with **`QWEN35_SYSTEM_PROMPT`** from the same file (Qwen3.5 XML tool-call instructions).
+| What changes | Before (released / `qwen3vl`) | After (Qwen3.5 SFT) |
+|--------------|-------------------------------|----------------------|
+| `system` | `QWEN3VL_SYSTEM_PROMPT` (JSON inside `<tool_call>` spec) | `QWEN35_SYSTEM_PROMPT` in [`PROMPT.py`](AndroidWorld/android_world/agents/PROMPT.py) |
+| `assistant` `<tool_call>` | JSON: `{"name": "mobile_use", "arguments": {...}}` | XML: `<function=mobile_use><parameter=action>...</parameter>...</function>` |
 
-2. **`assistant` `<tool_call>` block** — Data uses **JSON** inside the tags, e.g. `<tool_call>\n{"name": "mobile_use", "arguments": {...}}\n</tool_call>`. For Qwen3.5, rewrite each call to **XML**, e.g. `<tool_call>\n<function=mobile_use>\n<parameter=action>\nclick\n</parameter>\n<parameter=coordinate>\n[163, 718]\n</parameter>\n</function>\n</tool_call>` (see the example in `QWEN35_SYSTEM_PROMPT`). Keep Thought / Action text as in the original assistant turn.
+Thought / Action lines in `assistant` are unchanged. Convert with:
 
-Then run `llamafactory-cli train LlamaFactory/qwen35_full_sft.yaml` (`template: qwen3.5`, set `model_name_or_path` to your Qwen3.5-VL checkpoint). Trajectory export via `convert_traj.py` currently targets `qwen25vl` / `qwen3vl` only—apply the two steps above when preparing Qwen3.5 SFT JSON from released or converted trajectories.
+```bash
+# After placing split1.json … split4.json under your LLaMA-Factory data/ directory:
+python LlamaFactory/convert_splits_to_qwen35.py \
+  --input data \
+  --output data_qwen35 \
+  --glob "split*.json"
+```
+
+This writes `split1_qwen35.json`, etc. Point `dataset_info.json` / `qwen35_full_sft.yaml` at the converted files, then:
+
+```bash
+llamafactory-cli train LlamaFactory/qwen35_full_sft.yaml
+```
+
+(`template: qwen3.5`, set `model_name_or_path` to your Qwen3.5-VL checkpoint.) `convert_traj.py` still exports `qwen25vl` / `qwen3vl` only—run this script on released splits or on trajectories you converted to ShareGPT separately.
 
 **Results.** AndroidWorld success rates (%):
 
