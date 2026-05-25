@@ -16,9 +16,6 @@ Release Plans:
 - [x] Task and trajectory synthesis code
 - [ ] Other code and resources
 
-## Qwen3.5 Support
-OpenMobile includes evaluation and reproduction code for **Qwen3.5** on **AndroidWorld** via `--agent_name qwen35vl`. This section covers inference deployment, how to run eval, dataset compatibility, and reported results.
-
 
 
 ## 📋 Table of Contents
@@ -27,6 +24,7 @@ OpenMobile includes evaluation and reproduction code for **Qwen3.5** on **Androi
 - [Evaluation](#evaluation)
 - [Trajectory Synthesis](#trajectory-synthesis)
 - [Training](#training)
+- [Qwen3.5 Support](#qwen35-support)
 - [Acknowledgements](#acknowledgements)
 - [License](#license)
 - [Citation](#citation)
@@ -249,6 +247,10 @@ llamafactory-cli train LlamaFactory/qwen3vl_full_sft.yaml
 ```
 
 The YAML file is intended as a reproducible starting point for Qwen3-VL full-parameter SFT. Please adjust `model_name_or_path`, `dataset_dir`, batch size, DeepSpeed config, and output paths according to your local LLaMA-Factory setup and hardware.
+
+<a id="qwen3.5-support"></a>
+## Qwen3.5 Support
+OpenMobile includes evaluation and reproduction code for **Qwen3.5** on **AndroidWorld** via `--agent_name qwen35vl`. This section covers inference deployment, how to run eval, dataset compatibility, and reported results.
 
 <a id="acknowledgements"></a>
 ## 💐 Acknowledgements
