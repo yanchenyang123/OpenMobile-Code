@@ -74,7 +74,9 @@ def convert_assistant_content(content: str, *, skip_if_already_xml: bool) -> tup
     if tool_call is None:
         return content, False
     xml_block = tool_call_dict_to_xml(tool_call)
-    new_content = _TOOL_CALL_RE.sub(xml_block, content, count=1)
+    # Use a callable replacement: re.sub treats string replacements as escape templates
+    # (e.g. "\d" in Action JSON breaks); a lambda inserts xml_block literally.
+    new_content = _TOOL_CALL_RE.sub(lambda _m: xml_block, content, count=1)
     return new_content, new_content != content
 
 
