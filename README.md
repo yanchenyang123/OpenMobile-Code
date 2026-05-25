@@ -267,7 +267,7 @@ but set `--agent_name qwen35vl`.
 | Qwen3.5-9B | SFT (OpenMobile) | 63.8 ± 2.8 | 78.5 |
 
 
-**Note (inference).** We could **not** reproduce the table above when serving Qwen3.5-9B with **vLLM v0.21.0** (OpenAI-compatible `/v1` endpoint): runs were unstable / misaligned with expected tool-call behavior under our `qwen35vl` agent. The reported *Base* and *SFT (OpenMobile)* numbers were obtained with **SGLang v0.5.11** on the same `run.py` settings. 
+**Note (inference).** We could **not** reproduce the table above when serving Qwen3.5-9B with **vLLM v0.21.0** (OpenAI-compatible `/v1` endpoint). The reported *Base* and *SFT (OpenMobile)* numbers were obtained with **SGLang v0.5.11** on the same `run.py` settings. 
 
 <a id="acknowledgements"></a>
 ## 💐 Acknowledgements
