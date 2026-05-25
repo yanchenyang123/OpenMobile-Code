@@ -254,7 +254,23 @@ We provide a minimal recipe to fine-tune and evaluate Qwen3.5-VL on AndroidWorld
 
 **AndroidWorld evaluation.** After environment setup and starting an OpenAI-compatible 
 model server, run `AndroidWorld/run.py` as in the [Evaluation](#evaluation) section, 
-but set `--agent_name qwen35vl` 
+but set `--agent_name qwen35vl`.
+
+**Training.** Convert rollouts with `convert_traj.py --model-format qwen3vl` if needed; run `llamafactory-cli train LlamaFactory/qwen35_full_sft.yaml` with `model_name_or_path` set to your Qwen3.5-VL checkpoint.
+
+**Results.** AndroidWorld success rates (%):
+
+| Model | Setting | pass@1 | pass@3 |
+|-------|---------|--------|--------|
+| Qwen3-VL-8B | Official | 47.6 | — |
+| Qwen3-VL-8B | Base (reproduced) | 47.6 ± 2.2 | 62.1 |
+| Qwen3-VL-8B | SFT (OpenMobile) | 64.7 ± 3.2 | 78.0 |
+| Qwen3.5-9B | Official | 57.8 | — |
+| Qwen3.5-9B | Base (reproduced) | 50.9 ± 2.2 | 65.5 |
+| Qwen3.5-9B | SFT (OpenMobile) | 63.8 ± 2.8 | 78.5 |
+
+*Official*: reported reference numbers. *Base* / *SFT (OpenMobile)*: evaluated with this repository (`--agent_name qwen35vl` for Qwen3.5-9B; Qwen3-VL-8B uses `qwen3vl`). ± denotes std over runs where applicable.
+
 <a id="acknowledgements"></a>
 ## 💐 Acknowledgements
 Thanks to the following open-sourced projects:
