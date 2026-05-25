@@ -279,7 +279,6 @@ This writes `split1_qwen35.json`, etc. Point `dataset_info.json` / `qwen35_full_
 llamafactory-cli train LlamaFactory/qwen35_full_sft.yaml
 ```
 
-(`template: qwen3.5`, set `model_name_or_path` to your Qwen3.5-VL checkpoint.) `convert_traj.py` still exports `qwen25vl` / `qwen3vl` only—run this script on released splits or on trajectories you converted to ShareGPT separately.
 
 **Results.** AndroidWorld success rates (%):
 
