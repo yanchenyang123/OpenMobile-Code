@@ -263,7 +263,7 @@ but set `--agent_name qwen35vl`.
 | `system` | `QWEN3VL_SYSTEM_PROMPT` (JSON inside `<tool_call>` spec) | `QWEN35_SYSTEM_PROMPT` in [`PROMPT.py`](AndroidWorld/android_world/agents/PROMPT.py) |
 | `assistant` `<tool_call>` | JSON: `{"name": "mobile_use", "arguments": {...}}` | XML: `<function=mobile_use><parameter=action>...</parameter>...</function>` |
 
-Thought / Action lines in `assistant` are unchanged. Convert with:
+Convert with:
 
 ```bash
 # After placing split1.json … split4.json under your LLaMA-Factory data/ directory:
